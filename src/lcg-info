@@ -301,6 +301,7 @@ my @voattrs = ("VORunningJobs", "VOTotalJobs",
 $attrlist = $help = $celist = $selist = $servicelist =$sitelist =
     $debug = $sed = 0;
 $query = $attrs = $vo = '';
+$timeout = 10.0;
 GetOptions('help' => \$help,
 	   'list-ce'    => \$celist,
 	   'list-se'    => \$selist,
@@ -312,7 +313,8 @@ GetOptions('help' => \$help,
 	   'vo=s'       => \$vo,
 	   'bdii=s'     => \$bdii,
 	   'debug'     => \$debug,
-	   'sed'        => \$sed
+	   'sed'        => \$sed,
+	   'timeout=f'     => \$timeout
 	   ) or pod2usage("$NAME: wrong arguments.\n");
 
 if ( $celist+$selist+$servicelist+$sitelist+$attrlist+$help != 1) {
@@ -722,7 +724,7 @@ sub parse_query {
 sub bdii_init {
 
     foreach my $bdii (@bdiilist) {
-	unless ($ldap = Net::LDAP->new($bdii)) {
+	unless ($ldap = Net::LDAP->new($bdii, multihomed => 1, timeout => $timeout)) {
 	    warn("$NAME: failed to contact BDII $bdii.\n");
 	    next;
 	}
@@ -951,16 +953,16 @@ lcg-info - Queries the WLCG information system
 
 =head1 SYNOPSIS
 
- lcg-info --list-ce [--bdii bdii] [--vo vo] [--sed] [--debug]
+ lcg-info --list-ce [--bdii bdii] [--vo vo] [--sed] [--debug] [--timeout secs]
           [--query query] [--attrs list]
 
- lcg-info --list-se [--bdii bdii] [--vo vo] [--sed] [--debug]
+ lcg-info --list-se [--bdii bdii] [--vo vo] [--sed] [--debug] [--timeout secs]
           [--query query] [--attrs list]
 
- lcg-info --list-service [--bdii bdii] [--vo vo] [--sed] [--debug]
+ lcg-info --list-service [--bdii bdii] [--vo vo] [--sed] [--debug] [--timeout secs]
           [--query query] [--attrs list]
 
- lcg-info --list-site [--bdii bdii] [--vo vo] [--sed] [--debug]
+ lcg-info --list-site [--bdii bdii] [--vo vo] [--sed] [--debug] [--timeout secs]
           [--query query] [--attrs list]
 
  lcg-info --list-attrs
@@ -1032,6 +1034,14 @@ The value can be expressed as <vo>, VO:<vo> or
 VOMS:<fqan>, where <fqan> is a VOMS Fully Qualified Attribute Name. The
 * wildcard is allowed. When used with --list-ce, <vo> and VO:<vo> are
 equivalent.
+
+=item B<--timeout>
+
+Restricts the time waiting for a TCP connection to establish.
+Defaults to 10.0 seconds. Using a shorter timeout might speedup the
+falling back to non-primary addresses when the endpoint implements
+high-availability using multiple address records. On the contrary,
+a longer timeout might help on unrealiable network.
 
 =back
 
