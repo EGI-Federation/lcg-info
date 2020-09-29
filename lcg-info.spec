@@ -29,10 +29,10 @@ make install prefix=%{buildroot}
 rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root,-)
-/usr/bin/lcg-info
-/usr/share/man/man1
-%{_defaultdocdir}/%{name}/LICENSE.txt
+%{_mandir}/man1/lcg-info.1.*
+%{_bindir}/lcg-info
+
+%license LICENSE.txt
 
 %changelog
 * Wed Feb 27 2019 Maarten Litmaath <Maarten.Litmaath@cern.ch> - 1.12.4
