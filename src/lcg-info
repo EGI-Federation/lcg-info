@@ -302,19 +302,19 @@ $attrlist = $help = $celist = $selist = $servicelist =$sitelist =
     $debug = $sed = 0;
 $query = $attrs = $vo = '';
 $timeout = 10.0;
-GetOptions('help' => \$help,
-	   'list-ce'    => \$celist,
-	   'list-se'    => \$selist,
+GetOptions('help'         => \$help,
+	   'list-ce'      => \$celist,
+	   'list-se'      => \$selist,
 	   'list-service' => \$servicelist,
-	   'list-site' => \$sitelist,
-	   'query=s'    => \$query,
-	   'list-attrs' => \$attrlist,
-	   'attrs=s'    => \$attrs,
-	   'vo=s'       => \$vo,
-	   'bdii=s'     => \$bdii,
-	   'debug'     => \$debug,
-	   'sed'        => \$sed,
-	   'timeout=f'     => \$timeout
+	   'list-site'    => \$sitelist,
+	   'query=s'      => \$query,
+	   'list-attrs'   => \$attrlist,
+	   'attrs=s'      => \$attrs,
+	   'vo=s'         => \$vo,
+	   'bdii=s'       => \$bdii,
+	   'debug'        => \$debug,
+	   'sed'          => \$sed,
+	   'timeout=f'    => \$timeout
 	   ) or pod2usage("$NAME: wrong arguments.\n");
 
 if ( $celist+$selist+$servicelist+$sitelist+$attrlist+$help != 1) {
