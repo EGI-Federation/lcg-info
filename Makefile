@@ -15,7 +15,6 @@ install:
 	mkdir -p $(prefix)/usr/share/doc/$(NAME)
 	@install -m 0755 src/lcg-info   $(prefix)/usr/bin/lcg-info
 	@install -m 0644 src/lcg-info.1 $(prefix)/usr/share/man/man1/lcg-info.1
-	@install -m 0644 LICENSE.txt $(prefix)/usr/share/doc/$(NAME)/
 
 dist:
 	@mkdir -p $(build)/$(NAME)-$(VERSION)/
