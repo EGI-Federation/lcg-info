@@ -44,6 +44,8 @@ using packages.
 
 Get the source by cloning this repository and doing a `make install`.
 
+perl-LDAP is required.
+
 ## Building packages
 
 A Makefile allowing to build source tarball and packages is provided.
@@ -56,6 +58,9 @@ The required build dependencies are:
 - make
 - rsync
 
+The required runtime dependency is:
+- perl-LDAP
+
 ```sh
 # Checkout tag to be packaged
 git clone https://github.com/EGI-Foundation/lcg-info.git
@@ -64,6 +69,7 @@ git checkout X.X.X
 # Building in a container
 docker run --rm -v $(pwd):/source -it centos:7
 yum install -y rpm-build make rsync gcc
+yum-builddep -y lcg-info.spec
 cd /source && make rpm
 ```
 
