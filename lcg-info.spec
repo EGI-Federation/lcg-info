@@ -31,6 +31,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 /usr/bin/lcg-info
 /usr/share/man/man1
+%{_defaultdocdir}/%{name}/LICENSE.txt
 
 %changelog
 * Thu Apr 14 2011 Andrea Sciaba <Andrea.Sciaba@cern.ch>   - 1.12.2
