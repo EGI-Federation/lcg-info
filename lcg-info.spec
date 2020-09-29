@@ -32,8 +32,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %{_mandir}/man1/lcg-info.1.*
 %{_bindir}/lcg-info
-
-%license LICENSE.txt
+%{_defaultdocdir}/%{name}/LICENSE.txt
 
 %changelog
 * Tue Sep 29 2020 Baptiste Grenier <baptiste.grenier@egi.eu> - 1.12.5
