@@ -1038,10 +1038,10 @@ equivalent.
 =item B<--timeout>
 
 Restricts the time waiting for a TCP connection to establish.
-Defaults to 10.0 seconds. Using a shorter timeout might speedup the
-falling back to non-primary addresses when the endpoint implements
+Defaults to 10.0 seconds. Using a shorter timeout might speedup
+falling back to alternative addresses when the endpoint implements
 high-availability using multiple address records. On the contrary,
-a longer timeout might help on unrealiable network.
+a longer timeout might help with unreliable network.
 
 =back
 
