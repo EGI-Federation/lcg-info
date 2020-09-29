@@ -11,9 +11,10 @@ BuildRequires: make
 BuildRequires: rsync
 BuildRequires: gcc
 Requires: perl-LDAP
+URL: https://github.com/EGI-Foundation/lcg-ino
 
 %description
-This command line tool queries the LCG information system.
+This command line tool queries the WLCG/EGI information system.
 
 %prep
 %setup -q
