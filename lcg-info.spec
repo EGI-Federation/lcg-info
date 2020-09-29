@@ -1,7 +1,7 @@
 Name: lcg-info
-Version: 1.12.4
+Version: 1.12.5
 Release: 1%{?dist}
-Summary: lcg-info
+Summary: The lcg-info program
 Group: System Environment/Daemons
 License: ASL 2.0
 Source: %{name}-%{version}.tar.gz
@@ -35,6 +35,9 @@ rm -rf %{buildroot}
 %license LICENSE.txt
 
 %changelog
+* Tue Sep 29 2019 Baptiste Grenier <baptiste.grenier@egi.eu> - 1.12.5
+- Bug fix for GGUS 140478: Try all host addresses after a configurable timeout (Benjamin Jacobs)
+
 * Wed Feb 27 2019 Maarten Litmaath <Maarten.Litmaath@cern.ch> - 1.12.4
 - Bug fix for GGUS 139556: deprecated Perl syntax creates warnings
 
