@@ -7,6 +7,10 @@ License:	ASL 2.0
 Source:		%{name}-%{version}.tar.gz
 BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-build
+BuildRequires: make
+BuildRequires: rsync
+BuildRequires: gcc
+Requires: perl-LDAP
 
 %description
 This command line tool queries the LCG information system.
