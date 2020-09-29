@@ -35,10 +35,10 @@ rm -rf %{buildroot}
 %{_defaultdocdir}/%{name}/LICENSE.txt
 
 %changelog
-* Thu Feb 27 2019 Maarten Lithmaath <Maarten.Lithmaath@cern.ch> - 1.12.4
+* Wed Feb 27 2019 Maarten Litmaath <Maarten.Litmaath@cern.ch> - 1.12.4
 - Bug fix for GGUS 139556: deprecated Perl syntax creates warnings
 
-* Thu Sep 06 2016 Maarten Lithmaath <Maarten.Lithmaath@cern.ch> - 1.12.3
+* Tue Sep 06 2016 Maarten Litmaath <Maarten.Litmaath@cern.ch> - 1.12.3
 - Added SE implementation attributes
 
 * Thu Apr 14 2011 Andrea Sciaba <Andrea.Sciaba@cern.ch>   - 1.12.2
