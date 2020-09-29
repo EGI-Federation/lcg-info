@@ -18,26 +18,24 @@ before_install:
   - sudo apt install -y docker-ce
   - docker --version
 install:
-  - wget http://archive.ubuntu.com/ubuntu/pool/universe/r/rpmlint/rpmlint_1.7-1_all.deb
-  - sudo dpkg -i rpmlint_1.7-1_all.deb || sudo apt install -f -y
   - gem install mdl
 script:
   # First syntax, linting and pre-test stages
   - mdl -s relaxed README.md
-  - rpmlint lcg-info.spec
   # Lint Perl file
   # XXX to be tested
   # - ./perl-lint-travis/scan.sh
   # Then, start the build container
   - docker run --name build_container -d -ti -v $PWD:/tmp -w /tmp $OS_NAME:$OS_MAJOR_VERSION /bin/bash -c 'while true ; do sleep 1000 ; done'
   # Now, install prerequisites for the build
-  - docker exec -i -w /root build_container yum install -y rpm-build yum-utils epel-release
+  - docker exec -i -w /root build_container yum install -y rpm-build yum-utils rpmlint epel-release
   - docker exec -i build_container yum-builddep -y lcg-info.spec
   # Eventually build the RPMs
   - docker exec -i -w /tmp build_container make rpm
-  # Lint RPM and SRPM
-  - rpmlint build/RPMS/noarch/lcg-info*.el${OS_MAJOR_VERSION}.noarch.rpm
-  - rpmlint build/SRPMS/lcg-info*.el${OS_MAJOR_VERSION}.src.rpm
+  # Lint SPEC, RPM and SRPM
+  - docker exec -i -w /tmp build_container rpmlint lcg-info.spec
+  - docker exec -i -w /tmp build_container rpmlint build/RPMS/noarch/lcg-info*.el${OS_MAJOR_VERSION}.noarch.rpm
+  - docker exec -i -w /tmp build_container rpmlint build/SRPMS/lcg-info*.el${OS_MAJOR_VERSION}.src.rpm
   # Eventually install the RPM in the container
   - docker exec -i -w /tmp/build/RPMS/noarch build_container bash -c "yum localinstall -y lcg-info*.el${OS_MAJOR_VERSION}.noarch.rpm"
 deploy:
