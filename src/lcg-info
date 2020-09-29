@@ -5,9 +5,11 @@
 #
 # Author: Andrea Sciaba' <Andrea.Sciaba@cern.ch>
 #
-# Version: 1.12.2
+# Version: 1.12.4
 #
 # History:
+# - 1.12.4: Bug fix for GGUS 139556: deprecated Perl syntax creates warnings
+# - 1.12.3: Added SE implementation attributes
 # - 1.12.2: Indicate that bugs should be reported via GGUS
 # - 1.12.1: Removed requirement for GLUE 1.3; various bug fixes
 # - 1.12.0: Made compatible only with GLUE 1.3; added support for
@@ -108,6 +110,8 @@ my %attrmap  = (
 				   obj  => "GlueVOView"},
 		CEVOs          => {glue => "GlueCEAccessControlBaseRule",
 				   obj  => "GlueCE"},
+		CEImpl         => {glue => "GlueCEImplementationName",
+				   obj  => "GlueCE"},
 		VOCEVOs        => {glue => "GlueCEAccessControlBaseRule",
 				   obj  => "GlueVOView"},
 		CEStatus       => {glue => "GlueCEStateStatus",
@@ -178,6 +182,10 @@ my %attrmap  = (
                                    obj  => "GlueSE"},
 		SESite         => {glue => "GlueForeignKey",
 				   obj  => "GlueSE"},
+                SEImpl         => {glue => "GlueSEImplementationName",
+                                   obj  => "GlueSE"},
+                SEImplVer      => {glue => "GlueSEImplementationVersion",
+                                   obj  => "GlueSE"},
                 SAID           => {glue => "GlueSALocalID",
                                    obj  => "GlueSA"},
                 SAName         => {glue => "GlueSAName",
@@ -472,7 +480,7 @@ sub ce_query {
 	foreach my $a ( @p ) {
 	    my $arref = ${$ceattrs{$ce}}{$a};
 	    printf $fattr, "$a";
-	    if ( defined @$arref ) {
+	    if ( @$arref ) {
 		my @v = @$arref;
 		my $first = 1;
 		foreach my $val ( @v ) {
@@ -552,7 +560,7 @@ sub se_query {
 	foreach my $a ( @p ) {
 	    my $arref = ${$seattrs{$se}}{$a};
 	    printf $fattr, $a;
-	    if ( defined @$arref ) {
+	    if ( @$arref ) {
 		my @v = @$arref;
 		my $first = 1;
 		foreach my $val ( @v ) {
@@ -601,7 +609,7 @@ sub service_query {
 	foreach my $a ( @p ) {
 	    my $arref = ${$serviceattrs{$service}}{$a};
 	    printf $fattr, $a;
-	    if ( defined @$arref ) {
+	    if ( @$arref ) {
 		my @v = @$arref;
 		my $first = 1;
 		foreach my $val ( @v ) {
@@ -650,7 +658,7 @@ sub site_query {
 	foreach my $a ( @p ) {
 	    my $arref = ${$siteattrs{$site}}{$a};
 	    printf $fattr, $a;
-	    if ( defined @$arref ) {
+	    if ( @$arref ) {
 		my @v = @$arref;
 		my $first = 1;
 		foreach my $val ( @v ) {
