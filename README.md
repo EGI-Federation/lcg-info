@@ -31,6 +31,12 @@ lcg-info --list-attrs
 lcg-info --help
 ```
 
+### Example
+
+```sh
+lcg-info --list-se --vo ops --attrs SESite --bdii bdii.fqdn.tld:2170
+```
+
 ## Building packages
 
 A Makefile allowing to build source tarball and packages is provided.
