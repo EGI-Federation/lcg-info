@@ -36,7 +36,7 @@ rm -rf %{buildroot}
 %license LICENSE.txt
 
 %changelog
-* Tue Sep 29 2019 Baptiste Grenier <baptiste.grenier@egi.eu> - 1.12.5
+* Tue Sep 29 2020 Baptiste Grenier <baptiste.grenier@egi.eu> - 1.12.5
 - Bug fix for GGUS 140478: Try all host addresses after a configurable timeout (Benjamin Jacobs)
 
 * Wed Feb 27 2019 Maarten Litmaath <Maarten.Litmaath@cern.ch> - 1.12.4
