@@ -29,6 +29,7 @@ make install prefix=%{buildroot}
 rm -rf %{buildroot}
 
 %files
+%defattr(-,root,root,-)
 %{_mandir}/man1/lcg-info.1.*
 %{_bindir}/lcg-info
 
