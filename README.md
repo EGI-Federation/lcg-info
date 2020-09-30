@@ -70,8 +70,9 @@ git checkout X.X.X
 # Building in a container
 docker run --rm -v $(pwd):/source -it centos:7
 yum install -y rpm-build yum-utils
+cd /source
 yum-builddep -y lcg-info.spec
-cd /source && make rpm
+make rpm
 ```
 
 The RPM will be available into the `build/RPMS` directory.
