@@ -37,6 +37,23 @@ lcg-info --help
 lcg-info --list-se --vo ops --attrs SESite --bdii bdii.fqdn.tld:2170
 ```
 
+## Installing from source
+
+This procedure is not recommended for production deployment, please consider
+using packages.
+
+Get the source by cloning this repository and doing a `make install`.
+
+perl-LDAP is required.
+
+## Updating the man page
+
+The `lcg-info (1)` man page is generated from the perl file by using:
+
+```sh
+make manpage
+```
+
 ## Building packages
 
 A Makefile allowing to build source tarball and packages is provided.
@@ -49,6 +66,10 @@ The required build dependencies are:
 - make
 - rsync
 
+The required runtime dependency is:
+
+- perl-LDAP
+
 ```sh
 # Checkout tag to be packaged
 git clone https://github.com/EGI-Foundation/lcg-info.git
@@ -56,18 +77,28 @@ cd lcg-info
 git checkout X.X.X
 # Building in a container
 docker run --rm -v $(pwd):/source -it centos:7
-yum install -y rpm-build make rsync gcc
-cd /source && make rpm
+yum install -y rpm-build yum-utils
+cd /source
+yum-builddep -y lcg-info.spec
+make rpm
 ```
 
 The RPM will be available into the `build/RPMS` directory.
 
-## Installing from source
+## Preparing a release
 
-This procedure is not recommended for production deployment, please consider
-using packages.
+- Prepare a changelog from the last version, including contributors' names
+- Prepare a PR including
+  - Update of version and changelog in `lcg-info.spec`
+  - Update of version and changelog in `debian/changelog`
+  - Update of authors in `AUTHORS`
+- Once the PR has been merged draft a new release from master in GitHub
+  - using the vX.X.X format for the tag version
+  - using the X.X.X for the release title
+  - adding changelog in the description
+  - Publish the release
 
-Get the source by cloning this repo and do a `make install`.
+Packages will be built using Travis and attached to the release page.
 
 ## History
 

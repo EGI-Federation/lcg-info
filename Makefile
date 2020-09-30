@@ -8,6 +8,11 @@ dist=$(shell rpm --eval '%dist' | sed 's/%dist/.el5/')
 default: 
 	@echo "Nothing to do"
 
+manpage:
+	@echo Updating manpage
+	@pod2man --section=1 src/lcg-info > lcg-info.groff
+	@COLUMNS=80 man ./lcg-info.groff  > src/lcg-info.1
+
 install:
 	@echo installing ...
 	@mkdir -p $(prefix)/usr/bin/
@@ -50,7 +55,7 @@ rpm: srpm
 	rpmbuild --rebuild --define='_topdir ${build}' $(build)/SRPMS/$(NAME)-$(VERSION)-$(RELEASE)${dist}.src.rpm
 
 clean:
-	rm -f *~ $(NAME)-$(VERSION).tar.gz
+	rm -f *~ ${NAME}.groff $(NAME)-$(VERSION).tar.gz
 	rm -rf $(build)
 
-.PHONY: dist dist-deb srpm rpm deb sources clean 
+.PHONY: dist dist-deb srpm rpm deb sources clean manpage

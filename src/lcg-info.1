@@ -2,17 +2,20 @@ LCG-INFO(1)           User Contributed Perl Documentation          LCG-INFO(1)
 
 
 
+NNAAMMEE
+       lcg-info - Queries the WLCG information system
+
 SSYYNNOOPPSSIISS
-        lcg-info --list-ce [--bdii bdii] [--vo vo] [--sed] [--debug]
+        lcg-info --list-ce [--bdii bdii] [--vo vo] [--sed] [--debug] [--timeout secs]
                  [--query query] [--attrs list]
 
-        lcg-info --list-se [--bdii bdii] [--vo vo] [--sed] [--debug]
+        lcg-info --list-se [--bdii bdii] [--vo vo] [--sed] [--debug] [--timeout secs]
                  [--query query] [--attrs list]
 
-        lcg-info --list-service [--bdii bdii] [--vo vo] [--sed] [--debug]
+        lcg-info --list-service [--bdii bdii] [--vo vo] [--sed] [--debug] [--timeout secs]
                  [--query query] [--attrs list]
 
-        lcg-info --list-site [--bdii bdii] [--vo vo] [--sed] [--debug]
+        lcg-info --list-site [--bdii bdii] [--vo vo] [--sed] [--debug] [--timeout secs]
                  [--query query] [--attrs list]
 
         lcg-info --list-attrs
@@ -41,8 +44,8 @@ OOPPTTIIOONNSS
                Lists the sites which satisfy a query, or all the services if
                no query is given.
 
-       ----qquueerryy Restricts the output to the CEs/SEs/services/sites which sat-
-               isfy the given query.
+       ----qquueerryy Restricts the output to the CEs/SEs/services/sites which
+               satisfy the given query.
 
        ----bbddiiii  Allows to specify a BDII in the form <hostname>:<port>. If not
                given, the value of the environmental variable LCG_GFAL_INFOSYS
@@ -64,6 +67,14 @@ OOPPTTIIOONNSS
                Name. The * wildcard is allowed. When used with --list-ce, <vo>
                and VO:<vo> are equivalent.
 
+       ----ttiimmeeoouutt
+               Restricts the time waiting for a TCP connection to establish.
+               Defaults to 10.0 seconds. Using a shorter timeout might speedup
+               falling back to alternative addresses when the endpoint
+               implements high-availability using multiple address records. On
+               the contrary, a longer timeout might help with unreliable
+               network.
+
 DDEESSCCRRIIPPTTIIOONN
        This program allows the user to query the WLCG, LDAP-based information
        system. It requires the environmental variable LCG_GFAL_INFOSYS, or the
@@ -83,8 +94,7 @@ DDEESSCCRRIIPPTTIIOONN
        ANDed. The cuts are comma-separated and spaces are not allowed. OR and
        NOT and not supported in this version. Values can have the * wildcard.
 
-       VVOOVViieewwss
-
+   VVOOVViieewwss
        In order to access the VOView information, the --list-ce option must be
        used.  If any VOView attribute is to be printed, the value of the
        attribute is printed for all VOViews selected by the query expression.
@@ -99,8 +109,9 @@ AAUUTTHHOORR
        Written by Andrea Sciaba.
 
 RREEPPOORRTTIINNGG BBUUGGSS
-       Report bugs via GGUS (http://ggus.org).
+       Report bugs via GGUS (http://ggus.org) or on GitHub at
+       https://github.com/EGI-Foundation/lcg-info/issues.
 
 
 
-perl v5.8.5                       2008-04-22                       LCG-INFO(1)
+perl v5.10.1                      2020-09-30                       LCG-INFO(1)
