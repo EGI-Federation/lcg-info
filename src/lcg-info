@@ -948,7 +948,9 @@ sub check_objclass {
 __END__
 
 =pod
+
 =head1 NAME
+
 lcg-info - Queries the WLCG information system
 
 =head1 SYNOPSIS
