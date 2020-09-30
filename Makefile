@@ -55,7 +55,7 @@ rpm: srpm
 	rpmbuild --rebuild --define='_topdir ${build}' $(build)/SRPMS/$(NAME)-$(VERSION)-$(RELEASE)${dist}.src.rpm
 
 clean:
-	rm -f *~ $(NAME)-$(VERSION).tar.gz
+	rm -f *~ ${NAME}.groff $(NAME)-$(VERSION).tar.gz
 	rm -rf $(build)
 
 .PHONY: dist dist-deb srpm rpm deb sources clean manpage
