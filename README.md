@@ -46,6 +46,14 @@ Get the source by cloning this repository and doing a `make install`.
 
 perl-LDAP is required.
 
+## Updating the man page
+
+The `lcg-info (1)` man page is generated from the perl file by using:
+
+```sh
+make manpage
+```
+
 ## Building packages
 
 A Makefile allowing to build source tarball and packages is provided.
