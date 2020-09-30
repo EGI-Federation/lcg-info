@@ -69,7 +69,7 @@ cd lcg-info
 git checkout X.X.X
 # Building in a container
 docker run --rm -v $(pwd):/source -it centos:7
-yum install -y rpm-build make rsync gcc
+yum install -y rpm-build yum-utils
 yum-builddep -y lcg-info.spec
 cd /source && make rpm
 ```
