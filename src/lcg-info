@@ -1088,6 +1088,7 @@ Written by Andrea Sciaba.
 
 =head1 REPORTING BUGS
 
-Report bugs via GGUS (http://ggus.org).
+Report bugs via GGUS (http://ggus.org) or on GitHub at
+https://github.com/EGI-Foundation/lcg-info/issues.
 
 =cut
